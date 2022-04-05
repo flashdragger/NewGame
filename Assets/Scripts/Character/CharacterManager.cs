@@ -4,67 +4,42 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    public double timeSwitch = 1.5;
-    public double switchTimer;
-    private bool isReady;
-    public List<GameObject> PrefabList = new List<GameObject>(); 
-    public List<GameObject> CharacterList = new List<GameObject>();
-    public int defaultCharacter;
-    private int currentCharacter;
-
+    public List<GameObject> PrefabList;
+    private List<GameObject> _characters = new List<GameObject>();
+    public KeyCode[] KeyCodes = {
+        KeyCode.Alpha1,
+        KeyCode.Alpha2,
+        KeyCode.Alpha3
+    };
+    public int CurrentCharacter;
+    public int DefaultCharacter;
+    public float ColdTime;
+    private float _coldTimer;
+ 
     private void Start() {
-        // PrefabList.Add(Resources.Load("Prefabs/Capsule") as GameObject);
-        // PrefabList.Add(Resources.Load("Prefabs/Circle") as GameObject);
-        // PrefabList.Add(Resources.Load("Prefabs/Square") as GameObject);
-        for (int i = 0; i < PrefabList.Count; i++) 
-            CharacterList.Add(Instantiate(PrefabList[i]));
-        currentCharacter = defaultCharacter = 0;
-        switchTimer = -1.0;
-        UpdateCharacter();
+        foreach (var i in PrefabList)
+            _characters.Add(Instantiate<GameObject>(i));
+        ChangeCharacter(DefaultCharacter);
+        _coldTimer = 0f;
     }
 
     private void Update() {
-        if(!isReady) {
-            switchTimer -= Time.deltaTime;
-            if(switchTimer < 0) 
-                isReady = true;
-        }
-        Reason();
-    }
-
-    private void Reason() {
-        if(!isReady) 
+        if(_coldTimer > 0) {
+            _coldTimer -= Time.deltaTime;
             return;
-
-        if(Input.GetKeyDown(KeyCode.Alpha1) && currentCharacter != 0)
-        {
-            isReady = false;
-            switchTimer = timeSwitch;
-            currentCharacter = 0;
-            UpdateCharacter();
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2) && currentCharacter != 1)
-        {
-            isReady = false;
-            switchTimer = timeSwitch;
-            currentCharacter = 1;
-            UpdateCharacter();
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha3) && currentCharacter != 2)
-        {
-            isReady = false;
-            switchTimer = timeSwitch;
-            currentCharacter = 2;
-            UpdateCharacter();
-        }
-    }
-    private void UpdateCharacter() {
-        for (int i = 0; i < CharacterList.Count; i++)
-        {
-            if (i != currentCharacter) {
-                CharacterList[i].SetActive(false);
+        
+        for (int i = 0; i < KeyCodes.Length; i++) 
+            if(Input.GetKeyDown(KeyCodes[i]) && CurrentCharacter != i) {
+                ChangeCharacter(i);
+                CurrentCharacter = i;
             }
-        }
-        CharacterList[currentCharacter].SetActive(true);
+    }
+
+    private void ChangeCharacter(int t) {
+        foreach (var i in _characters) 
+            i.SetActive(false);
+        _characters[t].SetActive(true);
+        _coldTimer = ColdTime;
     }
 }

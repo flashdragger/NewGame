@@ -152,14 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78cd505763c0aac408ee9360808e8434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSwitch: 1.5
-  switchTimer: 1.5
   PrefabList:
   - {fileID: 8767144669122676162, guid: ae6395b2f5dfbab4ea4506138885372f, type: 3}
   - {fileID: 4690981358626629001, guid: 967c4397f3bf8054aa31383cb79dac47, type: 3}
   - {fileID: 6469874535863327476, guid: beb2d545a55ceda40ace0312d2053332, type: 3}
-  CharacterList: []
-  defaultCharacter: 0
+  KeyCodes: 310000003200000033000000
+  CurrentCharacter: 0
+  DefaultCharacter: 0
+  ColdTime: 0.5
 --- !u!4 &190455034
 Transform:
   m_ObjectHideFlags: 0

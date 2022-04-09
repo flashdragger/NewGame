@@ -25,7 +25,7 @@ public abstract class FSMState {
     /// <param name="stateID">满足条件后转移的新状态ID</param>
     public void AddMap(FSMTriggerID triggerID, FSMStateID stateID) {
         _map.Add(triggerID, stateID);
-        Type triggerType = Type.GetType("AI.FSM." + triggerID + "Trigger");
+        Type triggerType = Type.GetType("AI.FSM." + triggerID);
         FSMTrigger trigger = Activator.CreateInstance(triggerType) as FSMTrigger;
         _triggers.Add(trigger);
     }
@@ -43,15 +43,15 @@ public abstract class FSMState {
     }
     
     public virtual void OnStateEnter(FSMBase fsm) {
-        if (fsm.animator != null) {
-            fsm.animator.SetTrigger(StateID.ToString() + "Trigger");
-        }
+        // if (fsm.animator != null) {
+        //     fsm.animator.SetTrigger(StateID.ToString() + "Trigger");
+        // }
     }
     public virtual void OnStateStay(FSMBase fsm) {}
     public virtual void OnStateExit(FSMBase fsm) {
-        if (fsm.animator != null) {
-            fsm.animator.ResetTrigger(StateID.ToString() + "Trigger");
-        }
+        // if (fsm.animator != null) {
+        //     fsm.animator.ResetTrigger(StateID.ToString() + "Trigger");
+        // }
     }
     
     public FSMStateID StateID { get; set; }

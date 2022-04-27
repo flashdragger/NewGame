@@ -1,9 +1,12 @@
 namespace AI.FSM {
 
-/// <summary>
-/// 有限状态机条件枚举
-/// </summary>
-public enum FSMTriggerID {
-}
+    /// <summary>
+    /// 有限状态机条件枚举
+    /// </summary>
+    public enum FSMTriggerID {
+        StartDashTrigger,
+        MoveTrigger,
+        EndDashTrigger
+    }
 
 }

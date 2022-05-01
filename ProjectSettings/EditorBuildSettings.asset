@@ -6,8 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     path: Assets/Arts/2DBirds_Pack3/Scenes/Demo.unity
+=======
+    path: Assets/Arts/Sprites/Birds/Scenes/Demo.unity
+>>>>>>> Stashed changes
+=======
+    path: Assets/Arts/Sprites/Birds/Scenes/Demo.unity
+>>>>>>> Stashed changes
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/StartScene.unity

@@ -13,8 +13,7 @@ namespace AI.FSM
         }
 
         public override void OnStateEnter(FSMBase fsm) 
-         {
-        CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
+        {    CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
             if (ch != null) {
                 ch.PS -= ch.DashCost;
                 ch.DashTimer = ch.DashTime;

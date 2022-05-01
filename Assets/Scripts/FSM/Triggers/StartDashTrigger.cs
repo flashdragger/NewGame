@@ -12,8 +12,7 @@ namespace AI.FSM
         }
 
         public override bool HandleTrigger(FSMBase fsm)
-        {
-            Character ch = (Character) fsm;
+        {     CharacterFSM ch = (CharacterFSM) fsm;
             return ((Input.GetKey(KeyCode.LeftShift) || Input.GetMouseButton(1)) && ch.PS >= ch.DashCost) || ch.IsDashing == true;;
         }
     }

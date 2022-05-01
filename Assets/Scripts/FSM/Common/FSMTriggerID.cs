@@ -5,8 +5,9 @@ namespace AI.FSM {
     /// </summary>
     public enum FSMTriggerID {
         StartDashTrigger,
-        MoveTrigger,
-        EndDashTrigger
+        StartMoveTrigger,
+        EndDashTrigger,
+        EndMoveTrigger
     }
 
 }

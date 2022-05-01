@@ -14,19 +14,19 @@ namespace AI.FSM
 
         public override void OnStateEnter(FSMBase fsm) 
         {
-            Character ch = fsm.GetComponent<Character>();
+        CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
             if (ch != null) {
+                ch.PS -= ch.DashCost;
                 ch.DashTimer = ch.DashTime;
                 _initVelocity = ch.Rb.velocity;
                 ch.Rb.velocity = ch.DashSpeed * ch.Rb.velocity.normalized;
-                Debug.Log("v:" + ch.Rb.velocity + " s:" + ch.DashSpeed);
                 ch.IsDashing = true;
             }
         }
 
         public override void OnStateStay(FSMBase fsm)
         {
-            Character ch = fsm.GetComponent<Character>();
+            CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
             if (ch != null) {
                 ch.DashTimer -= Time.deltaTime;
             }
@@ -34,7 +34,7 @@ namespace AI.FSM
 
         public override void OnStateExit(FSMBase fsm)
         {
-            Character ch = fsm.GetComponent<Character>();
+            CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
             if (ch != null) {
                 ch.DashTimer = ch.DashTime;
                 ch.IsDashing = false;

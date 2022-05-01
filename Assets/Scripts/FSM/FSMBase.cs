@@ -18,6 +18,7 @@ public class FSMBase : MonoBehaviour {
     /// 初始化其他组件
     /// </summary>
     protected virtual void init() {
+     defaultStateID = FSMStateID.Idle;
     }
     protected void loadDefaultState() {
         // 加载默认状态

@@ -18,7 +18,7 @@ public class CharacterManager : MonoBehaviour
  
     private void Start() {
         foreach (var i in PrefabList)
-            _characters.Add(Instantiate<GameObject>(i));
+      _characters.Add(Instantiate<GameObject>(i, transform));
         ChangeCharacter(DefaultCharacter);
         _coldTimer = 0f;
     }

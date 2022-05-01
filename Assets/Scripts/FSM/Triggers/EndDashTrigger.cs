@@ -12,8 +12,7 @@ namespace AI.FSM
         }
 
         public override bool HandleTrigger(FSMBase fsm)
-        {
-            Character ch = fsm.GetComponent<Character>();
+        {   CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
             if (ch != null) {
                 return ch.DashTimer < 0;
             }

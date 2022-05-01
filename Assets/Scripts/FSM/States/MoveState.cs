@@ -11,7 +11,7 @@ public class MoveState : FSMState
     }
 
     public override void OnStateStay(FSMBase fsm) {
-        Character ch = (Character) fsm;
+        CharacterFSM ch = (CharacterFSM) fsm;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         ch.Rb.velocity = ch.MoveSpeed * (new Vector2(horizontal, vertical));

@@ -6,6 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -43,6 +44,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RecordsShow.unity
     guid: 55f5c1a9c93f1cd4dbe7f61aa9315a51
+=======
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+>>>>>>> 2ce4bce5b1eeed8223bf8b2cb858de86bfcf796f
 =======
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729

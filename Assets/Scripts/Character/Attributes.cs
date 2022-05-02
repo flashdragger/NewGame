@@ -11,5 +11,5 @@ public class Attributes : MonoBehaviour
             ice
         }
         public Elements EleAttribute;
-        public int HP = 100;
+        public float HP = 100;
 }

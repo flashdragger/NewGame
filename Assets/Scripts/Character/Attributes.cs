@@ -8,7 +8,8 @@ public class Attributes : MonoBehaviour
         public enum Elements {
             water,
             fire,
-            ice
+            ice,
+            NULL
         }
         public Elements EleAttribute;
         public float HP = 100;

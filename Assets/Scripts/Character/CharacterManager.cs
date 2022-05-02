@@ -15,7 +15,8 @@ public class CharacterManager : MonoBehaviour
     public int DefaultCharacter;
     public float ColdTime;
     private float _coldTimer;
- 
+    public AudioSource music;
+
     private void Start() {
         foreach (var i in PrefabList)
             _characters.Add(Instantiate<GameObject>(i, transform));
@@ -33,6 +34,8 @@ public class CharacterManager : MonoBehaviour
             if(Input.GetKeyDown(KeyCodes[i]) && CurrentCharacter != i) {
                 ChangeCharacter(i);
                 CurrentCharacter = i;
+                music.Play();
+
             }
     }
 

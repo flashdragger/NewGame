@@ -36,8 +36,34 @@ namespace AI.FSM
 
         #region Attack
 
+        [Range(0,1)]
+        public int AttackKind = 0;
+        public List<GameObject> AttackPrefabs;
+        private List<GameObject> _attackPool;
+        private int _poolSize;
+        private Vector2 _mousePosition;
+
+        public Vector2 MousePosition {
+            get { return _mousePosition; }
+            set { _mousePosition = value; }
+        }
+
+        public List<GameObject> AttackPool {
+            get { return _attackPool; }
+            set { _attackPool = value; }
+        }
         
-        
+        #endregion
+
+        #region Damage
+        [SerializeField]
+        private float _damageAmount;
+        private Attributes.Elements _damageType;
+
+        public float DamageAmount {
+            get { return _damageAmount; }
+        }
+
         #endregion
 
         public Rigidbody2D Rb {
@@ -49,6 +75,16 @@ namespace AI.FSM
             _dashTimer = DashTime;
             _dashCost = 10;
             _isDashing = false;
+            _poolSize = 3;
+
+            _attackPool = new List<GameObject>();
+            if (AttackPrefabs.Count != 0) {
+                for (int i = 0; i < _poolSize; i++) {
+                    GameObject gameObject = Instantiate(AttackPrefabs[AttackKind]);
+                    gameObject.SetActive(false);
+                    _attackPool.Add(gameObject);
+                }
+            }
         }
 
         protected override void setUpFSM()
@@ -57,16 +93,28 @@ namespace AI.FSM
 
             IdleState idleState = new IdleState();
             idleState.AddMap(FSMTriggerID.StartMoveTrigger, FSMStateID.Move);
+            idleState.AddMap(FSMTriggerID.StartAttackTrigger, FSMStateID.Attack);
+            idleState.AddMap(FSMTriggerID.DamageTrigger, FSMStateID.Damage);
             _states.Add(idleState);
 
             MoveState moveState = new MoveState();
             moveState.AddMap(FSMTriggerID.StartDashTrigger, FSMStateID.Dash);
             moveState.AddMap(FSMTriggerID.EndMoveTrigger, FSMStateID.Idle);
+            moveState.AddMap(FSMTriggerID.StartAttackTrigger, FSMStateID.Attack);
+            moveState.AddMap(FSMTriggerID.DamageTrigger, FSMStateID.Damage);
             _states.Add(moveState);
 
             DashState dashState = new DashState();
             dashState.AddMap(FSMTriggerID.EndDashTrigger, FSMStateID.Idle);
             _states.Add(dashState);
+
+            AttackState attackState = new AttackState();
+            attackState.AddMap(FSMTriggerID.EndAttackTrigger, FSMStateID.Idle);
+            _states.Add(attackState);
+
+            DamageState damageState = new DamageState();
+            
+            _states.Add(damageState);
         }
 
         private void FixedUpdate() {
@@ -78,6 +126,19 @@ namespace AI.FSM
                     _recoverTime = 0;
                 }
             }
+        }
+
+        public void TakeDamage() {
+            Attributes attribute = GetComponentInChildren<Attributes>();
+            attribute.HP -= _damageAmount;
+            StartCoroutine(CharacterFlick());
+        }
+
+        private IEnumerator CharacterFlick()
+        {
+            GetComponentInChildren<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
     }
 }

@@ -7,7 +7,9 @@ namespace AI.FSM {
         Default,
         Idle,
         Dash,
-        Move
+        Move,
+        Attack,
+        Damage,
     }
 
 }

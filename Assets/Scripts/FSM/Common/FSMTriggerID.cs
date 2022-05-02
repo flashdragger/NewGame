@@ -7,7 +7,10 @@ namespace AI.FSM {
         StartDashTrigger,
         StartMoveTrigger,
         EndDashTrigger,
-        EndMoveTrigger
+        EndMoveTrigger,
+        EndAttackTrigger,
+        StartAttackTrigger,
+        DamageTrigger
     }
 
 }

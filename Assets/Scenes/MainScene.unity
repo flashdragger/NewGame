@@ -155,9 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrefabList:
-  - {fileID: 7322479139939081348, guid: a23feaf1d7a3acb449af59db52c27e97, type: 3}
-  - {fileID: 4276338732681686867, guid: f16f6a210440df44e87687a72d5825c9, type: 3}
   - {fileID: 1201408413711666781, guid: b10e2fec0878b9d478768d2325764f00, type: 3}
+  - {fileID: 4276338732681686867, guid: f16f6a210440df44e87687a72d5825c9, type: 3}
+  - {fileID: 7322479139939081348, guid: a23feaf1d7a3acb449af59db52c27e97, type: 3}
   KeyCodes: 310000003200000033000000
   CurrentCharacter: 0
   DefaultCharacter: 0
@@ -195,6 +195,10 @@ MonoBehaviour:
   MoveSpeed: 5
   DashSpeed: 10
   DashTime: 0.1
+  AttackKind: 0
+  AttackPrefabs:
+  - {fileID: 8671769301286715399, guid: 38ee247b73c473742b5d537bfbde3f68, type: 3}
+  - {fileID: 6914447972220120800, guid: 419d024779ce5344ea1cd5eb0cb7f396, type: 3}
 --- !u!50 &190455036
 Rigidbody2D:
   serializedVersion: 4

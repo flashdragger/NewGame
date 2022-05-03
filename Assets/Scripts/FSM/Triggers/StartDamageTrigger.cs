@@ -4,20 +4,18 @@ using UnityEngine;
 
 namespace AI.FSM
 {
-    public class DamageTrigger : FSMTrigger
+    public class StartDamageTrigger : FSMTrigger
     {
         protected override void init()
         {
-            TriggerID = FSMTriggerID.DamageTrigger;
+            TriggerID = FSMTriggerID.StartDamageTrigger;
         }
 
         public override bool HandleTrigger(FSMBase fsm)
         {
             CharacterFSM ch = (CharacterFSM) fsm;
-            if (ch != null && ch.DamageAmount != 0) {
-                ch.TakeDamage();
-                return true;
-            }               
+            if (ch != null && ch.DamageAmount != 0) 
+                return true;            
             return false;
         }
     }

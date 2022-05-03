@@ -15,6 +15,14 @@ namespace AI.FSM
         {
             CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
             ch.TakeDamage();
+            ch.DamageAmount = 0;
+            ch.InvincibleTimer = ch.InvincibleTime;
+        }
+
+        public override void OnStateStay(FSMBase fsm)
+        {
+           CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
+           ch.InvincibleTimer -= Time.deltaTime;
         }
     }
 }

@@ -12,5 +12,8 @@ public class Attributes : MonoBehaviour
             NULL
         }
         public Elements EleAttribute;
+        public float MaxHP = 100;
         public float HP = 100;
+        public GameObject AttackPrefab;
+        public GameObject ChargeAttackPrefab;
 }

@@ -10,6 +10,7 @@ namespace AI.FSM {
         Move,
         Attack,
         Damage,
+        ChargeAttack,
     }
 
 }

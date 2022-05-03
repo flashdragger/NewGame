@@ -38,7 +38,7 @@ namespace AI.FSM
             if (ch != null) {
                 ch.DashTimer = ch.DashTime;
                 ch.IsDashing = false;
-                ch.Rb.velocity = _initVelocity;
+                ch.Rb.velocity = Vector2.zero;
             }
         }
 

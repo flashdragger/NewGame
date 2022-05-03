@@ -6,7 +6,9 @@ namespace AI.FSM
 {
     public class CharacterFSM : FSMBase
     {
-        public int PS = 100; //角色体力
+        public float MaxPS = 100;
+        public float PS = 100; //角色体力
+        public int RecoverTime = 50;
         private int _recoverTime = 0;
 
         #region Move and Dash
@@ -35,33 +37,47 @@ namespace AI.FSM
         #endregion
 
         #region Attack
-
-        [Range(0,1)]
-        public int AttackKind = 0;
-        public List<GameObject> AttackPrefabs;
-        private List<GameObject> _attackPool;
-        private int _poolSize;
         private Vector2 _mousePosition;
+        private bool _attackState = false;
+        private bool _chargeAttackState = false;
+        private float _keyTime = 0f;
+        private bool _addTime = false;
+        public float ChargeTime = 1.0f;
 
         public Vector2 MousePosition {
             get { return _mousePosition; }
             set { _mousePosition = value; }
         }
 
-        public List<GameObject> AttackPool {
-            get { return _attackPool; }
-            set { _attackPool = value; }
+        public float KeyTime {
+            get { return _keyTime; }
         }
-        
+
+        public bool AttackState {
+            get { return _attackState; }
+            set { _attackState = value; }
+        }
+
+        public bool ChargeAttackState {
+            get { return _chargeAttackState; }
+        }
+
         #endregion
 
         #region Damage
         [SerializeField]
         private float _damageAmount;
         private Attributes.Elements _damageType;
+        public float InvincibleTime = 0.1f;
+        private float _invincibleTimer; 
 
         public float DamageAmount {
             get { return _damageAmount; }
+            set { _damageAmount = value; }
+        }
+        public float InvincibleTimer {
+            get { return _invincibleTimer; }
+            set { _invincibleTimer = value; }
         }
 
         #endregion
@@ -75,16 +91,6 @@ namespace AI.FSM
             _dashTimer = DashTime;
             _dashCost = 10;
             _isDashing = false;
-            _poolSize = 3;
-
-            _attackPool = new List<GameObject>();
-            if (AttackPrefabs.Count != 0) {
-                for (int i = 0; i < _poolSize; i++) {
-                    GameObject gameObject = Instantiate(AttackPrefabs[AttackKind]);
-                    gameObject.SetActive(false);
-                    _attackPool.Add(gameObject);
-                }
-            }
         }
 
         protected override void setUpFSM()
@@ -94,14 +100,16 @@ namespace AI.FSM
             IdleState idleState = new IdleState();
             idleState.AddMap(FSMTriggerID.StartMoveTrigger, FSMStateID.Move);
             idleState.AddMap(FSMTriggerID.StartAttackTrigger, FSMStateID.Attack);
-            idleState.AddMap(FSMTriggerID.DamageTrigger, FSMStateID.Damage);
+            idleState.AddMap(FSMTriggerID.StartChargeAttackTrigger, FSMStateID.ChargeAttack);
+            idleState.AddMap(FSMTriggerID.StartDamageTrigger, FSMStateID.Damage);
             _states.Add(idleState);
 
             MoveState moveState = new MoveState();
             moveState.AddMap(FSMTriggerID.StartDashTrigger, FSMStateID.Dash);
             moveState.AddMap(FSMTriggerID.EndMoveTrigger, FSMStateID.Idle);
             moveState.AddMap(FSMTriggerID.StartAttackTrigger, FSMStateID.Attack);
-            moveState.AddMap(FSMTriggerID.DamageTrigger, FSMStateID.Damage);
+            moveState.AddMap(FSMTriggerID.StartChargeAttackTrigger, FSMStateID.ChargeAttack);
+            moveState.AddMap(FSMTriggerID.StartDamageTrigger, FSMStateID.Damage);
             _states.Add(moveState);
 
             DashState dashState = new DashState();
@@ -113,13 +121,23 @@ namespace AI.FSM
             _states.Add(attackState);
 
             DamageState damageState = new DamageState();
-            
+            damageState.AddMap(FSMTriggerID.EndDamageTrigger, FSMStateID.Idle);
             _states.Add(damageState);
+
+            ChargeAttackState chargeAttackState = new ChargeAttackState();
+            chargeAttackState.AddMap(FSMTriggerID.EndChargeAttackTrigger, FSMStateID.Idle);
+            _states.Add(chargeAttackState);
+        }
+
+        private new void Update() {
+            _currentState.Reason(this);
+            _currentState.OnStateStay(this);
+            KeyDetect();
         }
 
         private void FixedUpdate() {
             if(PS != 100) {
-                if(_recoverTime != 50)
+                if(_recoverTime != RecoverTime)
                     _recoverTime++;
                 else {
                     PS++;
@@ -137,8 +155,27 @@ namespace AI.FSM
         private IEnumerator CharacterFlick()
         {
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(InvincibleTime);
             GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        }
+
+        private void KeyDetect() {
+            if (Input.GetMouseButtonDown(0)) {
+                _addTime = true;
+            }
+            if (Input.GetMouseButtonUp(0)) {
+                if (_keyTime < ChargeTime) 
+                    _chargeAttackState = false;
+                else if (_keyTime > ChargeTime) 
+                    _chargeAttackState = true;
+                _attackState = true;
+                _addTime = false;
+                _keyTime = 0f;
+                _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+            if (_addTime) 
+                _keyTime += Time.deltaTime;
+            
         }
     }
 }

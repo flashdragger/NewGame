@@ -15,6 +15,8 @@ namespace AI.FSM
         public override void OnStateEnter(FSMBase fsm)
         {
             base.OnStateEnter(fsm);
+            CharacterFSM ch = (CharacterFSM) fsm;
+            ch.Rb.velocity = Vector2.zero;
         }
 
         public override void OnStateExit(FSMBase fsm)

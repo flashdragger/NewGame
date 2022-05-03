@@ -119,4 +119,4 @@ MonoBehaviour:
   MaxHP: 100
   HP: 100
   AttackPrefab: {fileID: 1734064023150484940, guid: 9d7560c74a4d76944a054c444aaa3d6c, type: 3}
-  ChargeAttackPrefab: {fileID: 1734064023150484940, guid: 9d7560c74a4d76944a054c444aaa3d6c, type: 3}
+  ChargeAttackPrefab: {fileID: 5496353688272014281, guid: ae68b1cf47bb9dd40a3ea6f8e5dbdfb0, type: 3}

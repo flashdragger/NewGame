@@ -115,5 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7573ac358f395c3469a35ae5667d6fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EleAttribute: 0
+  EleAttribute: 2
+  MaxHP: 100
   HP: 100
+  AttackPrefab: {fileID: 1734064023150484940, guid: 9d7560c74a4d76944a054c444aaa3d6c, type: 3}
+  ChargeAttackPrefab: {fileID: 1734064023150484940, guid: 9d7560c74a4d76944a054c444aaa3d6c, type: 3}

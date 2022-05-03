@@ -17,17 +17,13 @@ namespace AI.FSM
             Vector2 direction = ch.MousePosition - new Vector2(ch.transform.position.x, ch.transform.position.y);
             float angleDir = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angleDir - 90,Vector3.forward);
-
-            foreach (GameObject item in ch.AttackPool) {
-                if (item.activeSelf == false) {
-                    item.transform.position = ch.transform.position;
-                    item.transform.rotation = rotation;
-                    item.SetActive(true);
-                    break;
-                }
-            }         
+            GameObject gameObject = MonoBehaviour.Instantiate(ch.GetComponentInChildren<Attributes>().AttackPrefab);
+            gameObject.transform.position = ch.transform.position;
+            gameObject.transform.rotation = rotation;
+            gameObject.SetActive(true); 
 
             ch.MousePosition = Vector2.zero;
+            ch.AttackState = false;
         }
     }
 }

@@ -14,9 +14,8 @@ namespace AI.FSM
         public override bool HandleTrigger(FSMBase fsm)
         {
             CharacterFSM ch = (CharacterFSM) fsm;
-            if (ch != null && Input.GetMouseButtonDown(0)) {
-                ch.MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                return true;
+            if (ch != null) {
+                return !ch.ChargeAttackState && ch.AttackState;
             }
             return false;
         }

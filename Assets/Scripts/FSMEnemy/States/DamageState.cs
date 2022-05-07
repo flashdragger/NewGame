@@ -13,7 +13,7 @@ namespace Enemy.FSM
 
         public override void OnStateEnter(FSMBase fsm)
         {
-            CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
+            CharacterFSM_boss ch = fsm.GetComponent<CharacterFSM_boss>();
             ch.TakeDamage();
             
             fsm.changeActiveState(FSMStateID.Wander);

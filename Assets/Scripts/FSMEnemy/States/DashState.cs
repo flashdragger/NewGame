@@ -6,7 +6,7 @@ namespace Enemy.FSM
     public class DashState : FSMState
     {
         public float times = 1;
-        private int s;//¶¨ÒåÒ»¸öÃë
+        private int s;//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½
         public GameObject player;
         private Vector2 _initVelocity;
         private Rigidbody2D rb2d;
@@ -16,7 +16,7 @@ namespace Enemy.FSM
         }
         public override void OnStateEnter(FSMBase fsm)
         {
-            CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
+            CharacterFSM_boss ch = fsm.GetComponent<CharacterFSM_boss>();
             player = GameObject.FindGameObjectWithTag("Player");
             Vector2 aim=player.transform.position-ch.FPonit.position;
             aim = aim.normalized;
@@ -28,9 +28,9 @@ namespace Enemy.FSM
         public override void OnStateStay(FSMBase fsm)
         {
             Debug.Log("ccc");
-            //¼ÆÊ±Æ÷Íê³Éµ¹¼ÆÊ±µÄ¹¦ÄÜ
+            //ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Ê±ï¿½Ä¹ï¿½ï¿½ï¿½
             times -= Time.deltaTime;
-            s = (int)times % 60; //Ð¡Êý×ªÕûÊý 
+            s = (int)times % 60; //Ð¡ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ 
             if (times <= 0)
             {
                 fsm.changeActiveState(FSMStateID.Wander);

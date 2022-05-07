@@ -10,6 +10,7 @@ namespace Enemy.FSM
         Spike,
         Dash,
         Attack,
-        Damage
+        Damage,
+        // Spikeweed
     }
 }

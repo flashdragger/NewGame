@@ -8,9 +8,9 @@ namespace Enemy.FSM
     {
         public float times = 5;
         public float bulletTime = 1;
-        private int s;//¶¨ÒåÒ»¸öÃë
+        private int s;//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½
 
-        float Speed = 10;//ËÙ¶È
+        float Speed = 10;//ï¿½Ù¶ï¿½
         public Rigidbody2D Bullet;
         public Transform FPonit;
         public GameObject player;
@@ -20,7 +20,7 @@ namespace Enemy.FSM
         }
         public override void OnStateEnter(FSMBase fsm)
         {
-            CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
+            CharacterFSM_boss ch = fsm.GetComponent<CharacterFSM_boss>();
             Bullet = ch.Bullet;
             FPonit = ch.FPonit;
             Speed = ch.BulletSpeed;
@@ -29,16 +29,16 @@ namespace Enemy.FSM
         public override void OnStateStay(FSMBase fsm)
         {
             Debug.Log("bbb");
-            //¼ÆÊ±Æ÷Íê³Éµ¹¼ÆÊ±µÄ¹¦ÄÜ
+            //ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Ê±ï¿½Ä¹ï¿½ï¿½ï¿½
             times -= Time.deltaTime;
             bulletTime -= Time.deltaTime;
-            s = (int)times % 60; //Ð¡Êý×ªÕûÊý 
+            s = (int)times % 60; //Ð¡ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ 
             if (times <= 0)
             {
                 fsm.changeActiveState(FSMStateID.Dash);
             }
 
-            //·¢Éä
+            //ï¿½ï¿½ï¿½ï¿½
             s = (int)bulletTime % 60;
             if (bulletTime <= 0)
             {

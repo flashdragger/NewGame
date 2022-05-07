@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemy.FSM
 {
-    public class CharacterFSM : FSMBase
+    public class CharacterFSM_boss : FSMBase
     {
         public int PS = 100; //boss体力
         private int _recoverTime = 0;
@@ -18,6 +18,7 @@ namespace Enemy.FSM
         private bool _isDashing;
         private Rigidbody2D _rb;
         private GameObject _gameObject;
+        public GameObject prefab;
 
         public int DashCost {
             get { return _dashCost; }

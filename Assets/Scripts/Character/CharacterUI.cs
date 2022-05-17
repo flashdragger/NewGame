@@ -13,7 +13,7 @@ public class CharacterUI : MonoBehaviour
     private Image _headPicture;
     void Start()
     {
-        character = GameObject.FindGameObjectWithTag("GameManager").GetComponent<CharacterManager>();
+        character = GameObject.Find("GameManager").GetComponent<CharacterManager>();
         _headPicture = GetComponentInChildren<Image>();
     }
     

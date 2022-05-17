@@ -28,7 +28,7 @@ namespace Enemy.FSM
         }
         public override void OnStateStay(FSMBase fsm)
         {
-            Debug.Log("bbb");
+            // Debug.Log("bbb");
             //��ʱ����ɵ���ʱ�Ĺ���
             times -= Time.deltaTime;
             bulletTime -= Time.deltaTime;
@@ -43,7 +43,13 @@ namespace Enemy.FSM
             if (bulletTime <= 0)
             {
                 Rigidbody2D clone;
-                clone = (Rigidbody2D)MonoBehaviour.Instantiate(Bullet, FPonit.position, FPonit.rotation);
+            Vector2 direction =-new Vector2 (FPonit.position.x,FPonit.position.y) + new Vector2(player.transform.position.x, player.transform.position.y);
+
+            float angleDir = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+             Quaternion rotation = Quaternion.AngleAxis(angleDir - 90,Vector3.forward);
+
+                clone = (Rigidbody2D)MonoBehaviour.Instantiate(Bullet, FPonit.position, rotation);
                 Vector2 aim = player.transform.position - FPonit.position;
                 aim = aim.normalized;
                 clone.velocity = aim*Speed;

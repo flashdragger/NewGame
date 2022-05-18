@@ -16,6 +16,7 @@ namespace Enemy.FSM
         }
         public override void OnStateEnter(FSMBase fsm)
         {
+            fsm.animator.SetBool("Dash",true);
             CharacterFSM_boss ch = fsm.GetComponent<CharacterFSM_boss>();
             player = GameObject.FindGameObjectWithTag("Player");
             Vector2 aim=player.transform.position-ch.FPonit.position;
@@ -40,6 +41,8 @@ namespace Enemy.FSM
         {
             rb2d.velocity = _initVelocity;
             times = 1;
+            fsm.animator.SetBool("Dash",false);
+
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Enemy.FSM
         }
         public override void OnStateStay(FSMBase fsm)
         {
+            fsm.animator.SetBool("Fire",true);
             // Debug.Log("bbb");
             //��ʱ����ɵ���ʱ�Ĺ���
             times -= Time.deltaTime;
@@ -42,23 +43,37 @@ namespace Enemy.FSM
             s = (int)bulletTime % 60;
             if (bulletTime <= 0)
             {
-                Rigidbody2D clone;
-            Vector2 direction =-new Vector2 (FPonit.position.x,FPonit.position.y) + new Vector2(player.transform.position.x, player.transform.position.y);
+                Rigidbody2D clone1;
+                Rigidbody2D clone2;
+                Rigidbody2D clone3;
+                Vector2 direction =-new Vector2 (FPonit.position.x,FPonit.position.y) + new Vector2(player.transform.position.x, player.transform.position.y);
 
-            float angleDir = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                float angleDir = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-             Quaternion rotation = Quaternion.AngleAxis(angleDir - 90,Vector3.forward);
+                Quaternion rotation = Quaternion.AngleAxis(angleDir - 90,Vector3.forward);
 
-                clone = (Rigidbody2D)MonoBehaviour.Instantiate(Bullet, FPonit.position, rotation);
-                Vector2 aim = player.transform.position - FPonit.position;
-                aim = aim.normalized;
-                clone.velocity = aim*Speed;
+                clone1 = (Rigidbody2D)MonoBehaviour.Instantiate(Bullet, FPonit.position-new Vector3(-1,1,0), rotation);
+                clone2 = (Rigidbody2D)MonoBehaviour.Instantiate(Bullet, FPonit.position-new Vector3(-1,1,0), rotation);
+                clone3 = (Rigidbody2D)MonoBehaviour.Instantiate(Bullet, FPonit.position-new Vector3(-1,1,0), rotation);
+                Vector2 aim1 = player.transform.position - FPonit.position;
+                Vector2 aim2 = player.transform.position - FPonit.position;
+                aim2.y+=1;
+                Vector2 aim3 = player.transform.position - FPonit.position;
+                aim3.y-=1;
+                aim1 = aim1.normalized;
+                aim2 = aim2.normalized;
+                aim3 = aim3.normalized;
+                clone1.velocity = aim1*Speed;
+                clone2.velocity = aim2*Speed;
+                clone3.velocity = aim3*Speed;
                 bulletTime = 1;
             }
         }
         public override void OnStateExit(FSMBase fsm)
         {
             times = 5;
+            fsm.animator.SetBool("Fire",false);
+
         }
     }
 }

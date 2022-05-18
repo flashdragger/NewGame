@@ -18,7 +18,8 @@ namespace Enemy.FSM
         private bool _isDashing;
         private Rigidbody2D _rb;
         private GameObject _gameObject;
-        public GameObject prefab;
+        public GameObject prefabSpike;
+        public GameObject prefabTrap;
 
         public int DashCost {
             get { return _dashCost; }

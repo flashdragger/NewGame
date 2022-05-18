@@ -6,6 +6,8 @@ namespace Enemy.FSM
 {
     public class WanderState : FSMState
     {
+        // Animator animator;
+
         public float times = 3;
         private int s;//����һ����
         GameObject go;
@@ -15,6 +17,7 @@ namespace Enemy.FSM
         }
         public override void OnStateEnter(FSMBase fsm)
         {
+            fsm.animator.SetBool("Walk",true);
             CharacterFSM_boss ch = fsm.GetComponent<CharacterFSM_boss>();
             go = fsm.gameObject;
             go.AddComponent<Wander>();
@@ -38,6 +41,7 @@ namespace Enemy.FSM
         {
             MonoBehaviour.Destroy(go.GetComponent<Wander>());
             times = 3;
+            fsm.animator.SetBool("Walk",false);
     }
         
     }

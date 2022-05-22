@@ -14,6 +14,9 @@ namespace Enemy.FSM
         public Rigidbody2D Bullet;
         public Transform FPonit;
         public GameObject player;
+        private Rigidbody2D clone1;
+        private Rigidbody2D clone2;
+        private Rigidbody2D clone3;
         protected override void init()
         {
             StateID = FSMStateID.Attack;
@@ -29,11 +32,9 @@ namespace Enemy.FSM
         public override void OnStateStay(FSMBase fsm)
         {
             fsm.animator.SetBool("Fire",true);
-            // Debug.Log("bbb");
-            //��ʱ����ɵ���ʱ�Ĺ���
             times -= Time.deltaTime;
             bulletTime -= Time.deltaTime;
-            s = (int)times % 60; //С��ת���� 
+            s = (int)times % 60; 
             if (times <= 0)
             {
                 fsm.changeActiveState(FSMStateID.Dash);
@@ -43,9 +44,7 @@ namespace Enemy.FSM
             s = (int)bulletTime % 60;
             if (bulletTime <= 0)
             {
-                Rigidbody2D clone1;
-                Rigidbody2D clone2;
-                Rigidbody2D clone3;
+ 
                 Vector2 direction =-new Vector2 (FPonit.position.x,FPonit.position.y) + new Vector2(player.transform.position.x, player.transform.position.y);
 
                 float angleDir = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

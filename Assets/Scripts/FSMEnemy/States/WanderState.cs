@@ -24,8 +24,6 @@ namespace Enemy.FSM
         }
         public override void OnStateStay(FSMBase fsm)
         {
-            Debug.Log("aaa");
-            //��ʱ����ɵ���ʱ�Ĺ���
             times -= Time.deltaTime;
             s = (int)times % 60; //С��ת���� 
             if (times <= 0)

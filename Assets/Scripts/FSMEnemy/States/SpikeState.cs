@@ -51,7 +51,6 @@ namespace Enemy.FSM
         public override void OnStateStay(FSMBase fsm)
         {
             fsm.animator.SetBool("Spike",true);
-            Debug.Log("ccc");
             //��ʱ����ɵ���ʱ�Ĺ���
             times -= Time.deltaTime;
             s = (int)times % 60; //С��ת���� 

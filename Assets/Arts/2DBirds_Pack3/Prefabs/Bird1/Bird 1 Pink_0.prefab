@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4276338732681686189}
   - component: {fileID: 4276338732681686866}
   - component: {fileID: 7033777986332649631}
+  - component: {fileID: 64892884920188258}
   m_Layer: 0
   m_Name: Bird 1 Pink_0
   m_TagString: Untagged
@@ -120,3 +121,29 @@ MonoBehaviour:
   HP: 100
   AttackPrefab: {fileID: 1734064023150484940, guid: 9d7560c74a4d76944a054c444aaa3d6c, type: 3}
   ChargeAttackPrefab: {fileID: 5496353688272014281, guid: ae68b1cf47bb9dd40a3ea6f8e5dbdfb0, type: 3}
+--- !u!61 &64892884920188258
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4276338732681686867}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8, y: 6.26}
+    newSize: {x: 8, y: 6.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8, y: 6.26}
+  m_EdgeRadius: 0

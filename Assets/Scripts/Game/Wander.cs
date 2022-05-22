@@ -26,11 +26,6 @@ public class Wander : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        Debug.DrawLine(transform.position, endPointPositon, Color.red);
-    }
-
     //private void OnDrawGizmos()
     //{
     //    Gizmos.DrawWireSphere(transform.position, circle.radius);
@@ -95,7 +90,7 @@ public class Wander : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && followPlayer)
         {
-            anim.SetBool("isWalking", false);
+            // anim.SetBool("isWalking", false);
             currentSpeed = wanderSpeed;
             playerTransform = null;
             if (moveCoroutine != null)

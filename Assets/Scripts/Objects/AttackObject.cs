@@ -9,12 +9,12 @@ public class AttackObject : MonoBehaviour
         Normal,
         Charge
     }
-    private float baseDamage=2.0f;
+    public float BaseDamage=2.0f;
     public float MoveSpeed = 8.0f;
     public float ExistTime = 5.0f;
     private float _existTimer;
 
-    private Attributes.Elements element=Attributes.Elements.NULL;
+    public Attributes.Elements element = Attributes.Elements.NULL;
 
     private void OnEnable() {
         // Sprite sp;
@@ -46,55 +46,15 @@ public class AttackObject : MonoBehaviour
         transform.Translate(Vector2.up * MoveSpeed * Time.deltaTime);
         _existTimer += Time.deltaTime;
         if (_existTimer >= ExistTime) 
-              Destroy(gameObject);
+        {
+            Destroy(gameObject);
+            Debug.Log("de");
+        }
+              
     }
 
-    // private void OnTriggerEnter2D(Collider2D collision) {
-    //     if(collision.gameObject.CompareTag("Boss")){
-    //         BossAttributes bossAttributes=collision.gameObject.GetComponent<BossAttributes>();
-    //         if(bossAttributes.haveAttachedElement() ==true){
-    //                Attributes.Elements attachedElement=bossAttributes.getAttachedElement();
-    //                if(attachedElement==element)bossAttributes.damaged(baseDamage,element);
-    //                else{
-    //                    //attache element is water
-    //                    if(attachedElement==Attributes.Elements.water){
-    //                        if(element==Attributes.Elements.fire){
-    //                            bossAttributes.damaged(baseDamage*1.5f,Attributes.Elements.water);
-    //                        }
-    //                        else if(element==Attributes.Elements.ice){
-    //                            //water+ice->same effect:
-    //                            //ice remain
-    //                            bossAttributes.damaged(baseDamage,Attributes.Elements.ice);
-    //                        }
-    //                    }
-    //                    //fire
-    //                     else if(attachedElement==Attributes.Elements.fire){
-    //                         if(element==Attributes.Elements.water){
-    //                             bossAttributes.damaged(2.0f*baseDamage,Attributes.Elements.water);
-    //                         }
-    //                         else if(element==Attributes.Elements.ice){
-    //                             bossAttributes.damaged(1.5f*baseDamage,Attributes.Elements.fire);
-    //                         }
-    //                     }
-    //                     //ice
-    //                     else{
-    //                         if(element==Attributes.Elements.fire){
-    //                             bossAttributes.damaged(2.0f*baseDamage,Attributes.Elements.fire);
-    //                         }
-    //                         else if(element==Attributes.Elements.water){
-    //                             bossAttributes.damaged(baseDamage,Attributes.Elements.ice);
-    //                         }
-    //                     }
-    //                }
-    //         }
-    //         else{
-    //             bossAttributes.setAttachedElement(element);
-    //         }
-    //         //set damage based on the 
-    //     }
-    //     else{
-    //         Debug.Log("aa");
-    //     }
-    // }
+    private void OnTriggerEnter2D(Collider2D collision) {
+        _existTimer = ExistTime;
+    }
 
 }

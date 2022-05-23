@@ -32,6 +32,7 @@ namespace Enemy.FSM
         public override void OnStateEnter(FSMBase fsm)
         {
             CharacterFSM_boss ch = (CharacterFSM_boss)fsm;
+            ch.IsAttacking = true;
             /* Color color = Handles.color;
              Handles.color = Color.blue;
              Vector3 StartLine = Quaternion.Euler(0, -Alertangle, 0) * ch.transform.forward;
@@ -70,9 +71,10 @@ namespace Enemy.FSM
         }
         public override void OnStateExit(FSMBase fsm)
         {
+            CharacterFSM_boss ch = (CharacterFSM_boss)fsm;
             times = 3;
             fsm.animator.SetBool("Spike",false);
-
+            ch.IsAttacking = false;
         }
     }
 }

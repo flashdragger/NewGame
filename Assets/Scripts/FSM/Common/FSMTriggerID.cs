@@ -13,7 +13,8 @@ namespace AI.FSM {
         StartDamageTrigger,
         EndDamageTrigger,
         StartChargeAttackTrigger,
-        EndChargeAttackTrigger
+        EndChargeAttackTrigger,
+        DeadTrigger
     }
 
 }

@@ -43,6 +43,13 @@ namespace AI.FSM
         private float _keyTime = 0f;
         private bool _addTime = false;
         public float ChargeTime = 1.0f;
+        public float AttackInterval = 1.0f;
+        private float _intervalTimer = 0f;
+
+        public float IntervalTimer {
+            get {return _intervalTimer;}
+            set {_intervalTimer = value;}
+        }
 
         public Vector2 MousePosition {
             get { return _mousePosition; }
@@ -70,7 +77,8 @@ namespace AI.FSM
         private Attributes.Elements _damageType;
         public float InvincibleTime = 0.1f;
         private float _invincibleTimer; 
-
+        private bool _isInvincible = false;
+        
         public float DamageAmount {
             get { return _damageAmount; }
             set { _damageAmount = value; }
@@ -78,6 +86,11 @@ namespace AI.FSM
         public float InvincibleTimer {
             get { return _invincibleTimer; }
             set { _invincibleTimer = value; }
+        }
+
+        public bool IsInvincible {
+            get { return _isInvincible; }
+            set { _isInvincible = value; }
         }
 
         #endregion
@@ -102,6 +115,7 @@ namespace AI.FSM
             idleState.AddMap(FSMTriggerID.StartAttackTrigger, FSMStateID.Attack);
             idleState.AddMap(FSMTriggerID.StartChargeAttackTrigger, FSMStateID.ChargeAttack);
             idleState.AddMap(FSMTriggerID.StartDamageTrigger, FSMStateID.Damage);
+            idleState.AddMap(FSMTriggerID.DeadTrigger, FSMStateID.Dead);
             _states.Add(idleState);
 
             MoveState moveState = new MoveState();
@@ -110,29 +124,40 @@ namespace AI.FSM
             moveState.AddMap(FSMTriggerID.StartAttackTrigger, FSMStateID.Attack);
             moveState.AddMap(FSMTriggerID.StartChargeAttackTrigger, FSMStateID.ChargeAttack);
             moveState.AddMap(FSMTriggerID.StartDamageTrigger, FSMStateID.Damage);
+            moveState.AddMap(FSMTriggerID.DeadTrigger, FSMStateID.Dead);
             _states.Add(moveState);
 
             DashState dashState = new DashState();
             dashState.AddMap(FSMTriggerID.EndDashTrigger, FSMStateID.Idle);
+            dashState.AddMap(FSMTriggerID.DeadTrigger, FSMStateID.Dead);
             _states.Add(dashState);
 
             AttackState attackState = new AttackState();
             attackState.AddMap(FSMTriggerID.EndAttackTrigger, FSMStateID.Idle);
+            attackState.AddMap(FSMTriggerID.DeadTrigger, FSMStateID.Dead);
             _states.Add(attackState);
 
             DamageState damageState = new DamageState();
             damageState.AddMap(FSMTriggerID.EndDamageTrigger, FSMStateID.Idle);
+            damageState.AddMap(FSMTriggerID.DeadTrigger, FSMStateID.Dead);
             _states.Add(damageState);
 
             ChargeAttackState chargeAttackState = new ChargeAttackState();
             chargeAttackState.AddMap(FSMTriggerID.EndChargeAttackTrigger, FSMStateID.Idle);
+            chargeAttackState.AddMap(FSMTriggerID.DeadTrigger, FSMStateID.Dead);
             _states.Add(chargeAttackState);
+
+            DeadState deadState = new DeadState();
+            _states.Add(deadState);
         }
 
         private new void Update() {
             _currentState.Reason(this);
             _currentState.OnStateStay(this);
             KeyDetect();
+            if (_intervalTimer > 0) {
+                _intervalTimer -= Time.deltaTime;
+            }
         }
 
         private void FixedUpdate() {
@@ -176,6 +201,13 @@ namespace AI.FSM
             if (_addTime) 
                 _keyTime += Time.deltaTime;
             
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision) {
+            if (!_isInvincible && collision.gameObject.name != "Boss")
+                _damageAmount = collision.gameObject.GetComponent<AttackObject>().BaseDamage;
+            else if (!_isInvincible && collision.gameObject.name == "Boss") 
+                _damageAmount = 10;
         }
     }
 }

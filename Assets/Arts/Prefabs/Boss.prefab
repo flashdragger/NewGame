@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4617655266113273172}
   - component: {fileID: 4617655266113273171}
   - component: {fileID: 4617655266113273170}
+  - component: {fileID: 6989196450818783770}
   - component: {fileID: 4361041641737187495}
-  m_Layer: 0
-  m_Name: NewBoss 1
+  m_Layer: 9
+  m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,6 +111,8 @@ MonoBehaviour:
   bullet: {fileID: 9060979874860739935, guid: 18b05f4fcb4301b4aa7544498735068c, type: 3}
   BulletSpeed: 10
   _damageAmount: 0
+  AttachedElement: 3
+  IsFrozen: 0
 --- !u!50 &4617655266113273171
 Rigidbody2D:
   serializedVersion: 4
@@ -150,6 +153,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6989196450818783770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021715027950632041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7573ac358f395c3469a35ae5667d6fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EleAttribute: 3
+  MaxHP: 100
+  HP: 100
+  AttackPrefab: {fileID: 2603768425125104023, guid: 18b05f4fcb4301b4aa7544498735068c, type: 3}
+  ChargeAttackPrefab: {fileID: 2603768425125104023, guid: 18b05f4fcb4301b4aa7544498735068c, type: 3}
 --- !u!61 &4361041641737187495
 BoxCollider2D:
   m_ObjectHideFlags: 0

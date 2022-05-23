@@ -24,6 +24,7 @@ namespace AI.FSM
 
             ch.MousePosition = Vector2.zero;
             ch.AttackState = false;
+            ch.IntervalTimer = ch.AttackInterval;
         }
     }
 }

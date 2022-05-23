@@ -11,6 +11,7 @@ namespace Enemy.FSM
         Dash,
         Attack,
         Damage,
+        Frozen
         // Spikeweed
     }
 }

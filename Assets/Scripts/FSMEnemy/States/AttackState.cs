@@ -24,6 +24,7 @@ namespace Enemy.FSM
         public override void OnStateEnter(FSMBase fsm)
         {
             CharacterFSM_boss ch = fsm.GetComponent<CharacterFSM_boss>();
+            ch.IsAttacking = true;
             Bullet = ch.Bullet;
             FPonit = ch.FPonit;
             Speed = ch.BulletSpeed;
@@ -70,9 +71,10 @@ namespace Enemy.FSM
         }
         public override void OnStateExit(FSMBase fsm)
         {
+            CharacterFSM_boss ch = fsm.GetComponent<CharacterFSM_boss>();
             times = 5;
             fsm.animator.SetBool("Fire",false);
-
+            ch.IsAttacking = false;
         }
     }
 }

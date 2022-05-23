@@ -6,6 +6,8 @@ namespace Enemy.FSM
 {
     public enum FSMTriggerID
     {
-        DamageTrigger
+        DamageTrigger,
+        EndFrozenTrigger,
+        FrozenTrigger
     }
 }

@@ -14,11 +14,16 @@ namespace Enemy.FSM
         public override bool HandleTrigger(FSMBase fsm)
         {
             CharacterFSM_boss ch = (CharacterFSM_boss)fsm;
-            if (ch != null && ch.DamageAmount != 0)
+            if (ch != null && ch.DamageAmount != 0 && !ch.IsAttacking )
             {
                 // ch.TakeDamage();
                 return true;
             }
+            if (ch != null && ch.IsAttacking && ch.DamageAmount != 0) {
+                ch.TakeDamage();
+                ch.DamageAmount = 0;
+            }
+                
             return false;
         }
     }

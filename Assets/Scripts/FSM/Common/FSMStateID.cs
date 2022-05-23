@@ -11,6 +11,7 @@ namespace AI.FSM {
         Attack,
         Damage,
         ChargeAttack,
+        Dead
     }
 
 }

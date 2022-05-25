@@ -169,9 +169,15 @@ namespace Enemy.FSM
             attribute.HP -= _damageAmount;
             if(attribute.HP < 0)
             {
-                Destroy(gameObject);
+                
+                animator.SetTrigger("Die");
+                Invoke("DestroyBoss",1.3f);
             }
             StartCoroutine(CharacterFlick());
+        }
+        private void DestroyBoss()
+        {
+            Destroy(gameObject);
         }
 
         private IEnumerator CharacterFlick()

@@ -21,6 +21,7 @@ namespace AI.FSM
                 _initVelocity = ch.Rb.velocity;
                 ch.Rb.velocity = ch.DashSpeed * ch.Rb.velocity.normalized;
                 ch.IsDashing = true;
+                ch.IsInvincible = true;
             }
         }
 
@@ -39,6 +40,7 @@ namespace AI.FSM
                 ch.DashTimer = ch.DashTime;
                 ch.IsDashing = false;
                 ch.Rb.velocity = Vector2.zero;
+                ch.IsInvincible = false;
             }
         }
 

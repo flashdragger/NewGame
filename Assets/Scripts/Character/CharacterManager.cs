@@ -17,9 +17,14 @@ public class CharacterManager : MonoBehaviour
     private float _coldTimer;
     public AudioSource music;
 
+    public List<GameObject> Characters {
+        get {return _characters;}
+    }
+
     private void Start() {
-        foreach (var i in PrefabList)
+        foreach (var i in PrefabList) {
             _characters.Add(Instantiate<GameObject>(i, transform));
+        }
         ChangeCharacter(DefaultCharacter);
         _coldTimer = 0f;
     }
@@ -31,7 +36,7 @@ public class CharacterManager : MonoBehaviour
         }
         
         for (int i = 0; i < KeyCodes.Length; i++) 
-            if(Input.GetKeyDown(KeyCodes[i]) && CurrentCharacter != i) {
+            if(Input.GetKeyDown(KeyCodes[i]) && CurrentCharacter != i && _characters[i].GetComponent<Attributes>().HP > 0) {
                 ChangeCharacter(i);
                 CurrentCharacter = i;
                 music.Play();
@@ -39,7 +44,7 @@ public class CharacterManager : MonoBehaviour
             }
     }
 
-    private void ChangeCharacter(int t) {
+    public void ChangeCharacter(int t) {
         foreach (var i in _characters) 
             i.SetActive(false);
         _characters[t].SetActive(true);

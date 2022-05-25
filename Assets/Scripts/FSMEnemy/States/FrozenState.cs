@@ -12,6 +12,7 @@ namespace Enemy.FSM {
 
         public override void OnStateEnter(FSMBase fsm)
         {
+            fsm.animator.SetBool("Frozen",true);
             CharacterFSM_boss boss = (CharacterFSM_boss)fsm;
             if (boss != null) {
                 boss.FrozenTimer = boss.FrozenTime;
@@ -29,10 +30,13 @@ namespace Enemy.FSM {
 
         public override void OnStateExit(FSMBase fsm)
         {
+            fsm.animator.SetBool("Frozen",false);
+
             CharacterFSM_boss boss = (CharacterFSM_boss)fsm;
             if (boss != null) {
                 boss.IsFrozen = false;
             }
+
         }
     }
 }

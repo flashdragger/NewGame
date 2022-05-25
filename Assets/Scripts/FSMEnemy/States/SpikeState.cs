@@ -39,15 +39,17 @@ namespace Enemy.FSM
              Handles.DrawSolidArc(ch.transform.position, ch.transform.up, StartLine, Alertangle, AlertRadius);
              Handles.color = color;*/
            GameObject bird = GameObject.FindGameObjectWithTag("Player");
-           o1 =GameObject.Instantiate(ch.prefabSpike, new Vector2(bird.transform.position.x- 1.5f, bird.transform.position.y- 1.35f), ch.transform.rotation);
-           o2= GameObject.Instantiate(ch.prefabSpike, new Vector2(bird.transform.position.x + 1.5f, bird.transform.position.y - 1.35f), ch.transform.rotation);
-           o3= GameObject.Instantiate(ch.prefabSpike, new Vector2(bird.transform.position.x - 1.55f, bird.transform.position.y + 1.65f), ch.transform.rotation);
-           o4= GameObject.Instantiate(ch.prefabSpike, new Vector2(bird.transform.position.x+ 1.55f, bird.transform.position.y+ 1.65f), ch.transform.rotation);
-            o11 = GameObject.Instantiate(ch.prefabTrap, new Vector2(bird.transform.position.x - 1.5f, bird.transform.position.y - 1.5f), ch.transform.rotation);
-            o21 = GameObject.Instantiate(ch.prefabTrap, new Vector2(bird.transform.position.x + 1.45f, bird.transform.position.y - 1.5f), ch.transform.rotation);
-            o31 = GameObject.Instantiate(ch.prefabTrap, new Vector2(bird.transform.position.x - 1.45f, bird.transform.position.y + 1.5f), ch.transform.rotation);
-            o41 = GameObject.Instantiate(ch.prefabTrap, new Vector2(bird.transform.position.x + 1.5f, bird.transform.position.y + 1.5f), ch.transform.rotation);
 
+            float dis = Random.Range(-3.5f, 3.5f);
+            float dis2 = Random.Range(-2f, 2f);
+           o1 =GameObject.Instantiate(ch.prefabSpike, new Vector2(bird.transform.position.x- dis+ dis2, bird.transform.position.y- dis), ch.transform.rotation);
+           o2= GameObject.Instantiate(ch.prefabSpike, new Vector2(bird.transform.position.x + dis, bird.transform.position.y - dis + dis2), ch.transform.rotation);
+           o3= GameObject.Instantiate(ch.prefabSpike, new Vector2(bird.transform.position.x - dis + dis2, bird.transform.position.y + dis), ch.transform.rotation);
+           o4= GameObject.Instantiate(ch.prefabSpike, new Vector2(bird.transform.position.x+ dis+ dis2, bird.transform.position.y+ dis + dis2), ch.transform.rotation);
+            o11 = GameObject.Instantiate(ch.prefabTrap, new Vector2(bird.transform.position.x - dis + dis2, bird.transform.position.y - dis), ch.transform.rotation);
+            o21 = GameObject.Instantiate(ch.prefabTrap, new Vector2(bird.transform.position.x + dis, bird.transform.position.y - dis + dis2), ch.transform.rotation);
+            o31 = GameObject.Instantiate(ch.prefabTrap, new Vector2(bird.transform.position.x - dis + dis2, bird.transform.position.y + dis), ch.transform.rotation);
+            o41 = GameObject.Instantiate(ch.prefabTrap, new Vector2(bird.transform.position.x + dis, bird.transform.position.y + dis + dis2), ch.transform.rotation);
         }
         public override void OnStateStay(FSMBase fsm)
         {

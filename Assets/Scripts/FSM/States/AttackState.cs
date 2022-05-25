@@ -26,5 +26,13 @@ namespace AI.FSM
             ch.AttackState = false;
             ch.IntervalTimer = ch.AttackInterval;
         }
+
+        public override void OnStateStay(FSMBase fsm) 
+        {
+            CharacterFSM ch = fsm.GetComponent<CharacterFSM>();
+            if (ch.MousePosition != Vector2.zero) {
+                ch.MousePosition = Vector2.zero;
+            }
+        }
     }
 }

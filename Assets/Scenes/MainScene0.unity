@@ -1222,6 +1222,14 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4617655266113273172, guid: 2e6dfa955f6386f46829f1bcd56229a8, type: 3}
+      propertyPath: PS
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617655266113273172, guid: 2e6dfa955f6386f46829f1bcd56229a8, type: 3}
+      propertyPath: BulletSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5620854403198710795, guid: 2e6dfa955f6386f46829f1bcd56229a8, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1276,11 +1284,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6989196450818783770, guid: 2e6dfa955f6386f46829f1bcd56229a8, type: 3}
       propertyPath: HP
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6989196450818783770, guid: 2e6dfa955f6386f46829f1bcd56229a8, type: 3}
       propertyPath: MaxHP
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e6dfa955f6386f46829f1bcd56229a8, type: 3}
